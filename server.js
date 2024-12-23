@@ -15,13 +15,13 @@ app.use(helmet()); // Security headers
 app.use(cookieParser()); // Parse cookies from request headers
 app.use(compression()); // Compress response bodies
 
-app.use(
-  cors({
-    origin: "https://icarusships.netlify.app", // Allow requests from your Netlify frontend
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true,
-  })
-); // When credentials: true is set, it means that cookies will be included in cross-origin requests made by your frontend applicati
+const corsOptions = {
+  origin: "https://icarusships.netlify.app",
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
 
 // Connect to MongoDB
 async function dbConnection() {
