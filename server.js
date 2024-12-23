@@ -14,10 +14,7 @@ app.use(cors({ origin: "http://localhost:5173", credentials: true })); // When c
 // Connect to MongoDB
 async function dbConnection() {
   try {
-    const conn = await mongoose.connect(process.env.mongoURI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+    const conn = await mongoose.connect(process.env.mongoURI);
     console.log(`MongoDB Connected: ${conn.connection.host}`);
   } catch (error) {
     console.log("Failed to connect to MongoDB");
