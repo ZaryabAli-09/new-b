@@ -15,13 +15,18 @@ app.use(helmet()); // Security headers
 app.use(cookieParser()); // Parse cookies from request headers
 app.use(compression()); // Compress response bodies
 
-const corsOptions = {
-  origin: "https://icarusships.netlify.app",
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  credentials: true,
-};
-
-app.use(cors(corsOptions));
+// built in middlewares
+const allowedOrigins = [
+  "https://icarusships.netlify.app",
+  "http://localhost:5173",
+];
+app.use(
+  cors({
+    origin: allowedOrigins,
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    credentials: true,
+  })
+);
 
 // Connect to MongoDB
 async function dbConnection() {
