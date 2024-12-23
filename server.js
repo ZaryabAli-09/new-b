@@ -15,10 +15,6 @@ app.use(helmet()); // Security headers
 app.use(cookieParser()); // Parse cookies from request headers
 app.use(compression()); // Compress response bodies
 
-const allowedOrigins = [
-  "https://icarusships.netlify.app",
-  "http://localhost:5173",
-];
 app.use(
   cors({
     origin: "https://icarusships.netlify.app", // Allow requests from your Netlify frontend
