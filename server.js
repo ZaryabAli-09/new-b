@@ -4,12 +4,22 @@ const authRoutes = require("./routes/api/auth.routes.js");
 const userRoutes = require("./routes/api/user.routes.js");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
+const compression = require("compression");
+const helmet = require("helmet");
 require("dotenv").config();
 const app = express();
 
-app.use(express.json());
+// Built-in Middlewares
+app.use(express.json()); // Parsing JSON bodies
+app.use(helmet()); // Security headers
 app.use(cookieParser()); // Parse cookies from request headers
-app.use(cors({ origin: "http://localhost:5173", credentials: true })); // When credentials: true is set, it means that cookies will be included in cross-origin requests made by your frontend applicati
+app.use(compression()); // Compress response bodies
+
+const allowedOrigins = [
+  "https://icarusships.netlify.app",
+  "http://localhost:5173",
+];
+app.use(cors({ origin: allowedOrigins, credentials: true })); // When credentials: true is set, it means that cookies will be included in cross-origin requests made by your frontend applicati
 
 // Connect to MongoDB
 async function dbConnection() {
