@@ -19,7 +19,13 @@ const allowedOrigins = [
   "https://icarusships.netlify.app",
   "http://localhost:5173",
 ];
-app.use(cors({ origin: allowedOrigins, credentials: true })); // When credentials: true is set, it means that cookies will be included in cross-origin requests made by your frontend applicati
+app.use(
+  cors({
+    origin: "https://icarusships.netlify.app", // Allow requests from your Netlify frontend
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
+  })
+); // When credentials: true is set, it means that cookies will be included in cross-origin requests made by your frontend applicati
 
 // Connect to MongoDB
 async function dbConnection() {
