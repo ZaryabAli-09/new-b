@@ -30,7 +30,10 @@ app.use(
 // Connect to MongoDB
 async function dbConnection() {
   try {
-    const conn = await mongoose.connect(process.env.mongoURI);
+    const conn = await mongoose.connect(process.env.mongoURI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
     console.log(`MongoDB Connected: ${conn.connection.host}`);
   } catch (error) {
     console.log("Failed to connect to MongoDB");
