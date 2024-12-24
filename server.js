@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const authRoutes = require("./routes/api/auth.routes.js");
 const userRoutes = require("./routes/api/user.routes.js");
+const orderLabelRoutes = require("./routes/api/orderLabel.routes.js");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const compression = require("compression");
@@ -47,6 +48,7 @@ app.get("/", (req, res) => {
 });
 app.use("/api/auth", authRoutes);
 app.use("/api/user", userRoutes);
+app.use("/api/order-label", orderLabelRoutes);
 
 // Wildcard route for handling 404 errors
 app.get("*", (req, res) => {
