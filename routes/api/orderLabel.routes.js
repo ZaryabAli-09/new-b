@@ -109,7 +109,7 @@ router.post("/create-shipment", async (req, res, next) => {
 
     // Send response to frontend
     res.status(201).json({
-      message: "Shipment created successfully",
+      message: "Order created successfully see you orders in orders tab!!",
       orderId: order._id,
     });
   } catch (error) {
