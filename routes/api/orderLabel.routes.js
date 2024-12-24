@@ -145,4 +145,28 @@ router.get("/shipment-services", async (req, res, next) => {
   }
 });
 
+// Route to get all orders for a user
+router.get("/orders/:userId", async (req, res, next) => {
+  try {
+    const { userId } = req.params;
+
+    // Find all orders by userId
+    const orders = await Order.find({ userId });
+
+    if (orders.length === 0) {
+      return res.status(404).json({
+        message: "No orders found for this user.",
+      });
+    }
+
+    // Return the orders data
+    res.status(200).json({
+      message: "Orders fetched successfully",
+      orders,
+    });
+  } catch (error) {
+    next(error);
+  }
+});
+
 module.exports = router;
